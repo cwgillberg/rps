@@ -12,20 +12,24 @@ function getComputerChoice() {
 }   
 
 function playRound(playerSelection, computerSelection) {
-    if(playerSelection.toUpperCase() == "ROCK" && computerSelection.toUpperCase() == "SCISSORS") {
+    //logic for a turn
+    let p = playerSelection.toUpperCase();
+    let c = computerSelection.toUpperCase();
+
+    if(p == c) {
+        return "It's a tie";
+    } else if(p == "ROCK" && c == "SCISSORS") {
         return "Rock beats scissors, player wins!";
-    } else if(playerSelection.toUpperCase() == "SCISSORS" && computerSelection.toUpperCase() == "ROCK") {
+    } else if(p == "SCISSORS" && c == "ROCK") {
         return "Rock beats scissors, computer wins!";   
-    } else if(playerSelection.toUpperCase() == "PAPER" && computerSelection.toUpperCase() == "ROCK") {
+    } else if(p == "PAPER" && c == "ROCK") {
         return "Paper beats rock, player wins!";
-    } else if(playerSelection.toUpperCase() == "ROCK" && computerSelection.toUpperCase() == "PAPER") {
+    } else if(p == "ROCK" && c == "PAPER") {
         return "Paper beats rock, computer wins!";
-    } else if(playerSelection.toUpperCase() == "SCISSORS" && computerSelection.toUpperCase() == "PAPER") {
+    } else if(p == "SCISSORS" && c == "PAPER") {
         return "Scissors beats paper, player wins!";
-    } else if(playerSelection.toUpperCase() == "PAPER" && computerSelection.toUpperCase() == "SCISSORS") {
+    } else if(p == "PAPER" && c == "SCISSORS") {
         return "Scissors beats paper, computer wins!";
-    } else {
-        return "It's a tie!";
     }
 
 }
@@ -33,12 +37,12 @@ function playRound(playerSelection, computerSelection) {
 
 //TODO: add user input, get computerChoice, flesh out game loop
 function game() {
-
     for(let i = 0; i < 5; i++) {
-
-        playRound()
+        let player = prompt("Rock, paper or scissors?: ");
+        let computer = getComputerChoice();
+        console.log(playRound(player, computer));
     }
 }
 
 
-console.log(playRound(playerSelection, computerSelection));
+game();
