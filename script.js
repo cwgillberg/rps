@@ -1,3 +1,14 @@
+const buttons = document.querySelectorAll('button');
+const announcer = document.getElementById('msg');
+
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        announcer.textContent = playRound(button.id, getComputerChoice());
+    });
+});
+
+
 
 function getComputerChoice() {
     let random = Math.floor(Math.random() * 3);
@@ -34,15 +45,6 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
+function game(player, vom) {
 
-//TODO: add user input, get computerChoice, flesh out game loop
-function game() {
-    for(let i = 0; i < 5; i++) {
-        let player = prompt("Rock, paper or scissors?: ");
-        let computer = getComputerChoice();
-        console.log(playRound(player, computer));
-    }
 }
-
-
-game();
