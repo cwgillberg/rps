@@ -1,6 +1,10 @@
+'use strict';
+
 const buttons = document.querySelectorAll('button');
 const announcer = document.getElementById('msg');
-
+var playerScore = 0;
+var computerScore = 0;
+var turnCounter = 0;
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -45,6 +49,22 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
+function updateScore(who) {
+    if(who === "player") {
+        playerScore++;
+        let updateTarget = document.getElementById('playerScore');
+        updateTarget.textContent = "Player Score: `${playerScore}`";
+
+    } else if(who === "computer") {
+        computerScore++;
+        let updateTarget = document.getElementById('computerScore');
+        updateTarget.textContent = "Computer Score: `${computerScore}`";
+    }
+}
+
 function game(player, vom) {
+    while(turnCounter <= 5) {
+
+    }
 
 }
