@@ -2,17 +2,19 @@
 
 const buttons = document.querySelectorAll('button');
 const announcer = document.getElementById('msg');
-var playerScore = 0;
-var computerScore = 0;
-var turnCounter = 0;
+const playerScore = document.getElementById('playerScore');
+const computerScore = document.getElementById('computerScore');
+const turnDisplay = document.getElementById('turnCounter');
+var turnCounter = 1;
+var pScoreActual = 0;
+var cScoreActual = 0;
+
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         announcer.textContent = playRound(button.id, getComputerChoice());
     });
 });
-
-
 
 function getComputerChoice() {
     let random = Math.floor(Math.random() * 3);
@@ -26,45 +28,69 @@ function getComputerChoice() {
     }
 }   
 
+function setScore(who) {
+    if(who === "p") {
+        playerScore.textContent = `Player Score: ${pScoreActual}`;
+    } else if(who === "c") {
+        computerScore.textContent = `Computer Score: ${cScoreActual}`;
+    }
+}
+
+function resetPage() {
+    playerScore.textContent = "Player Score: ";
+    computerScore.textContent = "Computer Score: ";
+    turnDisplay.textContent = "Round: 1";
+}
+
 function playRound(playerSelection, computerSelection) {
     //logic for a turn
     let p = playerSelection.toUpperCase();
     let c = computerSelection.toUpperCase();
+    let msg = "";
+    turnCounter++;
 
+    turnDisplay.textContent = `Round ${turnCounter}`;
+
+    //who gets score?
     if(p == c) {
-        return "It's a tie";
+        msg = "It's a tie";
     } else if(p == "ROCK" && c == "SCISSORS") {
-        return "Rock beats scissors, player wins!";
+        pScoreActual++;
+        setScore("p");
+        msg = "Rock beats scissors, player wins!";
     } else if(p == "SCISSORS" && c == "ROCK") {
-        return "Rock beats scissors, computer wins!";   
+        cScoreActual++;
+        setScore("c");
+        msg = "Rock beats scissors, computer wins!";   
     } else if(p == "PAPER" && c == "ROCK") {
-        return "Paper beats rock, player wins!";
+        pScoreActual++;
+        setScore("p");
+        msg = "Paper beats rock, player wins!";
     } else if(p == "ROCK" && c == "PAPER") {
-        return "Paper beats rock, computer wins!";
+        cScoreActual++;
+        setScore("c");
+        msg = "Paper beats rock, computer wins!";
     } else if(p == "SCISSORS" && c == "PAPER") {
-        return "Scissors beats paper, player wins!";
+        pScoreActual++;
+        setScore("p");
+        msg = "Scissors beats paper, player wins!";
     } else if(p == "PAPER" && c == "SCISSORS") {
-        return "Scissors beats paper, computer wins!";
+        cScoreActual++;
+        setScore("c");
+        msg = "Scissors beats paper, computer wins!";
     }
 
-}
-
-function updateScore(who) {
-    if(who === "player") {
-        playerScore++;
-        let updateTarget = document.getElementById('playerScore');
-        updateTarget.textContent = "Player Score: `${playerScore}`";
-
-    } else if(who === "computer") {
-        computerScore++;
-        let updateTarget = document.getElementById('computerScore');
-        updateTarget.textContent = "Computer Score: `${computerScore}`";
-    }
-}
-
-function game(player, vom) {
-    while(turnCounter <= 5) {
-
+    //did someone win?
+    if(pScoreActual === 5) {
+        resetPage();
+        return "Game over! Player wins";
+    } else if(cScoreActual === 5) {
+        resetPage();
+        return "Game over! Computer wins";
+    } else {
+        return msg;
     }
 
-}
+} 
+
+
