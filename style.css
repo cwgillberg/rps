@@ -1,6 +1,5 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-  
 }
 
 .game {
@@ -10,7 +9,7 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    
+    font-size: large;
 }
 
 .scoreboard {
@@ -23,7 +22,8 @@ body {
 
 .gamescreen {
     border: 5px solid black;
-    padding: 100px 100px 100px 100px;
+    border-radius: 10px;
+    padding: 200px 100px 200px 100px;
     width: 40%;
     text-align: center;
 }
@@ -38,5 +38,7 @@ button {
     background-color: white;
     padding: 20px 20px 20px 20px;
     margin: 0px 20px 0px 20px;
-
+    border: none;
+    /*source: https://www.w3schools.com/csS/css3_buttons.asp */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
